@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="480" viewBox="0 0 720 480" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Yopag · aplicación móvil</title>
+  <desc id="desc">Ilustración esquemática de un teléfono para el proyecto Yopag de Servipag. No es una captura de la aplicación.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="720" y2="480" gradientUnits="userSpaceOnUse"><stop stop-color="#eef3f6"/><stop offset="1" stop-color="#d4e4e2"/></linearGradient>
+    <linearGradient id="screen" x1="260" y1="65" x2="460" y2="420" gradientUnits="userSpaceOnUse"><stop stop-color="#24343c"/><stop offset="1" stop-color="#14262c"/></linearGradient>
+  </defs>
+  <path fill="url(#background)" d="M0 0h720v480H0z"/>
+  <circle cx="360" cy="240" r="190" fill="#00c99a" opacity=".09"/>
+  <circle cx="360" cy="240" r="152" stroke="#00a881" opacity=".22"/>
+  <ellipse cx="360" cy="443" rx="107" ry="12" fill="#233b3d" opacity=".12"/>
+  <rect x="253" y="36" width="214" height="402" rx="33" fill="#18252c"/>
+  <rect x="261" y="44" width="198" height="386" rx="27" fill="url(#screen)" stroke="#607579"/>
+  <rect x="320" y="53" width="80" height="17" rx="8.5" fill="#142128"/>
+  <rect x="318" y="139" width="84" height="68" rx="14" fill="#00c99a"/>
+  <rect x="335" y="156" width="50" height="34" rx="5" stroke="#103a32" stroke-width="3"/>
+  <path d="M336 167h48m-39 13h9" stroke="#103a32" stroke-width="3" stroke-linecap="round"/>
+  <text x="360" y="253" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="38" font-weight="700">Yopag</text>
+  <text x="360" y="283" text-anchor="middle" fill="#a7c4c1" font-family="Arial, sans-serif" font-size="16">Aplicación móvil · Servipag</text>
+  <rect x="323" y="309" width="74" height="28" rx="14" fill="#00c99a" fill-opacity=".12" stroke="#00c99a" stroke-opacity=".4"/>
+  <text x="360" y="328" text-anchor="middle" fill="#74e5c7" font-family="Arial, sans-serif" font-size="14">Ionic</text>
+  <path d="M336 414h48" stroke="#91aaa9" stroke-width="4" stroke-linecap="round"/>
+</svg>

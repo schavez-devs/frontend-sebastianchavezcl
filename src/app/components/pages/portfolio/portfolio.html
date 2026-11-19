@@ -1,0 +1,158 @@
+<app-hero title="Portafolio" eyebrow="Mi trabajo en equipos de desarrollo"
+  ><a class="button" routerLink="." fragment="proyectos">Ver proyectos</a
+  ><a class="button outline light" routerLink="." fragment="trayectoria"
+    >Mi trayectoria</a
+  ></app-hero
+>
+<section class="section filter-section" id="proyectos">
+  <div class="container section-heading">
+    <h2>Experiencia profesional</h2>
+    <p class="eyebrow">
+      Aplicaciones y sistemas en los que he participado como parte de equipos de empresa.
+    </p>
+    <p>Una selección de proyectos de mi trayectoria como desarrollador.</p>
+    <div class="filters" aria-label="Filtrar proyectos">
+      @for (item of filters; track item) {
+        <button
+          [class.selected]="filter === item"
+          [attr.aria-pressed]="filter === item"
+          (click)="filter = item"
+        >
+          {{ item }}
+        </button>
+      }
+    </div>
+  </div>
+</section>
+<section class="section tinted">
+  <div class="container">
+    <div class="grid three">
+      @for (project of filteredProjects; track project.name) {
+        <article class="project-card">
+          <img [src]="project.image" [alt]="project.name" loading="lazy" />
+          <div class="card-body">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <div class="tags">
+              @for (tech of project.technologies.slice(0, 3); track tech) {
+                <span>{{ tech }}</span>
+              }
+            </div>
+            <button class="text-link" (click)="details.open(project)">
+              Ver mi participación →
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="caption">
+      Proyectos realizados durante mi experiencia laboral. Mi participación se detalla en cada
+      ficha.
+    </p>
+  </div>
+</section>
+<section class="section" id="trayectoria">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Mi trayectoria</h2>
+      <p class="eyebrow">Empresas y equipos de los que he formado parte</p>
+    </div>
+    <div class="timeline">
+      <article>
+        <span></span>
+        <h3>Caja 18</h3>
+        <p>
+          Desarrollo y mantención de sistemas e integraciones web con .NET Framework, Visual Basic y
+          C#, utilizando SQL Server para la gestión de datos.
+        </p>
+        <p>
+          Trabajo bajo metodologías tradicionales para la planificación, el desarrollo y la entrega
+          de soluciones orientadas a los procesos del negocio.
+        </p>
+        <p>
+          Anteriormente, me desempeñé en soporte computacional de nivel 2 y como encargado del
+          servicio técnico, reparando equipos computacionales a nivel nacional.
+        </p>
+        <p class="employment-tech">
+          .NET Framework · Visual Basic · C# · SQL Server · Metodologías tradicionales
+        </p>
+      </article>
+      <article>
+        <span></span>
+        <h3>Corellia Labs</h3>
+        <p class="employment-role">Full Stack Engineer</p>
+        <p>
+          Responsable del desarrollo e implementación de soluciones full stack basadas en
+          arquitectura AWS, integrando servicios de autenticación, procesamiento serverless,
+          almacenamiento de datos, mensajería, correo electrónico, distribución de contenido y
+          gestión de accesos. Utilicé Amazon DynamoDB como base de datos.
+        </p>
+        <p class="employment-tech">
+          AWS Amplify · Amazon Cognito · AWS Lambda · Amazon DynamoDB · Amazon SQS · Amazon SES ·
+          Amazon CloudFront · AWS IAM
+        </p>
+      </article>
+      <article>
+        <span></span>
+        <h3>Fusiona</h3>
+        <p>
+          Desarrollo de la aplicación móvil con Ionic y de aplicaciones web de administración con
+          Angular. Desarrollo del backend de la aplicación con Node.js y el framework Hapi,
+          utilizando MongoDB como base de datos. Participación en la migración de Google Maps a
+          Leaflet.
+        </p>
+        <p>
+          Durante la última etapa, participación en la gestión del proyecto, coordinando reuniones
+          con el cliente, elaborando estimaciones de tiempo y organizando el trabajo con el equipo
+          de desarrollo.
+        </p>
+        <p class="employment-tech">
+          Ionic · Angular · Node.js · Hapi · MongoDB · Google Maps · Leaflet · Gestión de proyectos
+        </p>
+      </article>
+      <article>
+        <span aria-hidden="true"></span>
+        <h3>Inovabiz</h3>
+        <p class="employment-role">
+          Full Stack Developer · Servicios para Servipag y desarrollo interno
+        </p>
+        <p>
+          Contratado por Inovabiz para prestar servicios de desarrollo a Servipag, utilizando GCP.
+          Participé en el desarrollo de la aplicación móvil Yopag con Ionic y en su backend con
+          NestJS y Express.js, bajo una arquitectura de microservicios, utilizando Python, Drupal y
+          GCP. En Yopag también trabajé con MongoDB, PostgreSQL y Redis.
+        </p>
+        <p>
+          Para Servipag, desarrollé Backoffice con arquitectura de microservicios en NestJS, Drupal
+          y GCP, utilizando MongoDB, PostgreSQL y Redis. También desarrollé procesos ETL con Apache
+          NiFi y Apache Kafka para centralizar los datos del negocio.
+        </p>
+        <p>
+          Además, participé en el desarrollo y mantención de sistemas legados de Servipag con .NET y
+          Drupal, utilizando GCP.
+        </p>
+        <p>
+          En paralelo, participé en proyectos internos de Inovabiz con React, Next.js y Python,
+          utilizando Azure.
+        </p>
+        <p class="employment-tech">
+          Servipag: Ionic · NestJS · Express.js · Python · Microservicios · .NET · MongoDB ·
+          PostgreSQL · Redis · GCP · ETL · Apache NiFi · Apache Kafka · Drupal
+        </p>
+        <p class="employment-tech">
+          Proyectos internos de Inovabiz: React · Next.js · Python · Azure
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="crosslink tinted">
+  <div class="container">
+    <div>
+      <h3>¿Buscas mis proyectos personales?</h3>
+      <p>Encuéntralos en la sección Mis apps.</p>
+    </div>
+    <a class="button outline" routerLink="/mis-apps">Ver mis apps</a>
+  </div>
+</section>
+<app-contact-banner /><app-project-dialog #details />

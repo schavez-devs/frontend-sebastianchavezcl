@@ -1,0 +1,12 @@
+<section class="hero" [class.home-hero]="home()">
+  <div class="container hero-content">
+    <p class="eyebrow">{{ eyebrow() }}</p>
+    <h1>{{ title() }}</h1>
+    @if (home()) {
+      <p class="hero-subtitle">Desarrollo web, backend y aplicaciones móviles</p>
+    } @else {
+      <p class="hero-subtitle author">Sebastián Chavez</p>
+    }
+    <div class="hero-actions"><ng-content /></div>
+  </div>
+</section>

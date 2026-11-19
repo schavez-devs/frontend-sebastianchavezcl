@@ -1,0 +1,102 @@
+<app-hero [home]="true" title="Sebastián Chavez" eyebrow="Bienvenido al futuro!"
+  ><a class="button" routerLink="/portafolio">Ver mi experiencia</a
+  ><a class="button outline light" routerLink="/contacto">Contactar</a></app-hero
+>
+<section class="section about">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Quién soy</h2>
+      <p class="eyebrow">Un poco sobre mí</p>
+      <p>
+        Soy desarrollador Full Stack. Me gusta construir soluciones web y móviles<br
+          class="desktop-only"
+        />
+        y seguir aprendiendo en cada proyecto.
+      </p>
+    </div>
+    <div class="skills">
+      @for (skill of skills; track skill.title) {
+        <article>
+          <span class="skill-icon"><app-icon [name]="skill.icon" /></span>
+          <h3>{{ skill.title }}</h3>
+          <p>{{ skill.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+<section class="section tinted">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Experiencia profesional</h2>
+      <p class="eyebrow">Proyectos en los que he participado como parte de equipos de empresa</p>
+    </div>
+    <div class="grid three">
+      @for (project of projects; track project.name) {
+        <button class="project-card card-button" (click)="details.open(project)">
+          <img [src]="project.image" [alt]="project.name" loading="lazy" />
+          <div class="card-body">
+            <h3>{{ project.name === 'Agencia Virtual' ? 'Caja 18' : project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <span class="work-label"><app-icon name="work" /> Experiencia laboral</span>
+          </div>
+        </button>
+      }
+    </div>
+    <a class="text-link section-link" routerLink="/portafolio" fragment="trayectoria"
+      >Conocer mi trayectoria →</a
+    >
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Mis aplicaciones</h2>
+      <p class="eyebrow">Un espacio para mis proyectos personales</p>
+    </div>
+    <div class="apps-intro">
+      <img
+        src="/images/apps-home.webp"
+        alt="Vista de una aplicación en móvil y ordenador"
+        loading="lazy"
+      />
+      <div>
+        <h3>Conoce mis proyectos personales</h3>
+        <p>
+          Explora las aplicaciones que he desarrollado como parte de mi aprendizaje y pasión por la
+          tecnología.
+        </p>
+        <a class="button" routerLink="/mis-apps">Explorar mis apps</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section tinted">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Formación continua</h2>
+      <p class="eyebrow">Cursos y certificaciones que complementan mi desarrollo profesional</p>
+    </div>
+    <div class="learning">
+      @for (course of ['AWS Serverless', 'Node y Jest', 'NestJS y Python']; track course) {
+        <div>
+          <app-icon name="file" />
+          <h3>{{ course }}</h3>
+        </div>
+      }
+    </div>
+    <a class="text-link section-link" routerLink="/certificaciones"
+      >Ver formación y certificaciones →</a
+    >
+  </div>
+</section>
+<section class="section map-bg home-contact">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Conversemos</h2>
+      <p class="eyebrow">Cuéntame sobre tu proyecto o propuesta</p>
+    </div>
+    <app-contact-form [compact]="true" />
+  </div>
+</section>
+<app-project-dialog #details />

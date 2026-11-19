@@ -1,0 +1,73 @@
+<form
+  #form="ngForm"
+  (ngSubmit)="form.valid && submit()"
+  class="contact-form"
+  [class.compact]="compact()"
+>
+  @if (!compact()) {
+    <label class="full"
+      >Motivo del contacto<select name="reason" [(ngModel)]="data.reason">
+        <option value="">Selecciona una opción</option>
+        <option>Proyecto de desarrollo</option>
+        <option>Oportunidad laboral</option>
+        <option>Consulta</option>
+      </select></label
+    >
+  }
+  <label
+    >Nombre <span [hidden]="compact()">*</span
+    ><input
+      name="name"
+      [(ngModel)]="data.name"
+      required
+      autocomplete="name"
+      placeholder="Tu nombre"
+  /></label>
+  <label
+    >Correo <span [hidden]="compact()">*</span
+    ><input
+      name="email"
+      [(ngModel)]="data.email"
+      type="email"
+      email
+      required
+      autocomplete="email"
+      placeholder="tu@correo.cl"
+  /></label>
+  @if (!compact()) {
+    <label class="full"
+      >Teléfono (opcional)<input
+        name="phone"
+        [(ngModel)]="data.phone"
+        type="tel"
+        autocomplete="tel"
+        placeholder="Tu teléfono"
+    /></label>
+  }
+  <label class="message-field"
+    >Mensaje <span [hidden]="compact()">*</span
+    ><textarea
+      name="message"
+      [(ngModel)]="data.message"
+      required
+      [rows]="compact() ? 3 : 5"
+      placeholder="Cuéntame sobre tu proyecto, propuesta o consulta..."
+    ></textarea>
+  </label>
+  @if (!compact()) {
+    <small class="full">* Campos obligatorios</small>
+  }
+  @if (form.submitted && form.invalid) {
+    <p class="form-notice full" role="alert">Completa tu nombre, un correo válido y el mensaje.</p>
+  }
+  <button type="submit" class="button full">
+    Enviar mensaje <span aria-hidden="true">→</span>
+  </button>
+  <small class="full form-help">Se abrirá tu aplicación de correo con el mensaje preparado.</small>
+  @if (composed) {
+    <p class="full form-notice" role="status">
+      Mensaje preparado. Completa el envío en tu aplicación de correo. También puedes escribir a
+      <a href="mailto:seba.chavez21@gmail.com">seba.chavez21&#64;gmail.com</a>.
+    </p>
+  }
+</form>

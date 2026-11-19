@@ -1,0 +1,88 @@
+<app-hero title="Mis certificaciones" eyebrow="Siempre aprendiendo"
+  ><a class="button" routerLink="." fragment="formacion">Ver formación</a></app-hero
+>
+<section class="section compact-section">
+  <div class="container section-heading">
+    <h2>Formación y aprendizaje</h2>
+    <p class="eyebrow">Mis títulos y cursos de desarrollo y tecnología.</p>
+    <p>Una parte de mi camino como desarrollador.</p>
+  </div>
+</section>
+<section class="section tinted" id="formacion">
+  <div class="container certificates-container">
+    <div class="section-heading">
+      <h2 class="smaller">Títulos académicos</h2>
+      <p class="eyebrow">Mi formación técnica y profesional.</p>
+    </div>
+    <div class="grid two">
+      @for (cert of certificates.slice(0, 2); track cert.name) {
+        <article class="certificate-card academic">
+          <img
+            [src]="cert.image"
+            [alt]="'Vista de referencia: ' + cert.name"
+            loading="lazy"
+          /><app-icon name="study" />
+          <h3>{{ cert.name }}</h3>
+          <p>{{ cert.description }}</p>
+          <button class="text-link" (click)="selected = cert; viewer.showModal()">
+            <app-icon name="search" /> Ampliar título
+          </button>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container certificates-container">
+    <div class="section-heading">
+      <h2 class="smaller">Cursos y especialización</h2>
+      <p class="eyebrow">Herramientas y conocimientos que complementan mi experiencia.</p>
+    </div>
+    @for (
+      group of [
+        { name: 'Udemy', start: 2, end: 4 },
+        { name: 'Platzi', start: 4, end: 6 },
+      ];
+      track group.name
+    ) {
+      <h3 class="provider">{{ group.name }}</h3>
+      <div class="grid two">
+        @for (cert of certificates.slice(group.start, group.end); track cert.name) {
+          <article class="certificate-card">
+            <img [src]="cert.image" [alt]="'Vista de referencia: ' + cert.name" loading="lazy" />
+            <h3>{{ cert.name }}</h3>
+            <p>{{ cert.description }}</p>
+            <button class="text-link" (click)="selected = cert; viewer.showModal()">
+              <app-icon name="search" /> Ampliar certificado
+            </button>
+          </article>
+        }
+      </div>
+    }
+    <p class="caption">
+      Vistas previas de referencia del diseño. Los documentos originales están pendientes de
+      incorporar.
+    </p>
+  </div>
+</section>
+<section class="section compact-section tinted">
+  <div class="container section-heading">
+    <h3>Del aprendizaje a la práctica</h3>
+    <p class="eyebrow">Conoce los proyectos en los que he participado.</p>
+    <a class="button outline" routerLink="/portafolio">Ver portafolio</a>
+  </div>
+</section>
+<app-contact-banner />
+<dialog
+  #viewer
+  class="certificate-dialog"
+  aria-labelledby="certificate-title"
+  (click)="$event.target === viewer && viewer.close()"
+>
+  <button class="dialog-close" (click)="viewer.close()" aria-label="Cerrar certificado">×</button
+  ><img [src]="selected.image" [alt]="selected.name" />
+  <div class="dialog-content">
+    <h3 id="certificate-title">{{ selected.name }}</h3>
+    <p>Vista previa de referencia · {{ selected.description }}</p>
+  </div>
+</dialog>

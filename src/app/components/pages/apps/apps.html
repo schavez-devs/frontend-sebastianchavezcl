@@ -19,78 +19,194 @@
     </div>
   </div>
 </section>
-@if (filter !== 'Móvil') {
-  <section class="section tinted">
-    <div class="container featured-app">
-      <div>
-        <p class="kicker">Aplicación destacada</p>
-        <img
-          src="/images/app-featured.webp"
-          alt="Referencia visual de una aplicación de tareas en tablet y móvil"
-        />
-        <p class="caption">Capturas de referencia</p>
-      </div>
-      <div class="featured-copy">
-        <span class="app-logo"><app-icon name="layers" /></span>
-        <h2>Nombre de tu app</h2>
-        <p>Una breve descripción de tu aplicación y para qué sirve.</p>
-        <span class="tag-outline">Proyecto personal</span>
-        <ul class="feature-list">
-          <li>
-            <app-icon name="gear" />
-            <div>
-              <h4>Qué puedes hacer</h4>
-              <p>Describe las principales funcionalidades.</p>
-            </div>
-          </li>
-          <li>
-            <app-icon name="people" />
-            <div>
-              <h4>Para quién está pensada</h4>
-              <p>Define el público objetivo de tu aplicación.</p>
-            </div>
-          </li>
-          <li>
-            <app-icon name="layers" />
-            <div>
-              <h4>Tecnologías utilizadas</h4>
-              <p>Menciona las tecnologías principales.</p>
-            </div>
-          </li>
-        </ul>
-        <button class="button" (click)="preview.showModal()">Ver aplicación</button
-        ><button class="text-link more-info" (click)="preview.showModal()">
-          Más información →
-        </button>
-      </div>
-    </div>
-  </section>
-}
 <section class="section">
   <div class="container">
-    <div class="section-heading">
-      <h2>Más aplicaciones</h2>
-      <p class="eyebrow">Otros proyectos personales.</p>
-    </div>
-    <div class="grid three">
-      @for (app of filteredApps; track app.image) {
-        <article class="app-card">
-          <img [src]="app.image" alt="Captura de referencia de una aplicación" loading="lazy" />
-          <div class="app-card-body">
-            <span class="app-logo"><app-icon name="layers" /></span>
-            <div>
-              <h3>{{ app.name }}</h3>
-              <p>Descripción breve del proyecto.</p>
-              <span class="tag-outline">{{ app.type }}</span
-              ><button class="text-link" (click)="preview.showModal()">Ver aplicación →</button>
+    <div class="app-list">
+      @for (app of filteredApps; track app.id) {
+        <article class="app-showcase" [attr.id]="app.id">
+          <div class="app-visual" [style.background]="app.panel">
+            @switch (app.id) {
+              @case ('jardines-aurora') {
+                <div class="aurora-brand">
+                  <img
+                    class="aurora-icon"
+                    src="/images/products/jardines-aurora-icon.png"
+                    width="80"
+                    height="80"
+                    alt="Icono de Jardines Aurora"
+                    loading="lazy"
+                    (error)="onImageError($event)"
+                  />
+                  <p class="aurora-tagline">Cultiva a<br />tu ritmo.</p>
+                  <p class="aurora-sub">Tu jardín, siempre a mano.</p>
+                  <span class="aurora-badge">App Android</span>
+                </div>
+                <div class="phone-frame">
+                  <img
+                    src="/images/products/jardines-aurora-enciclopedia.webp"
+                    width="432"
+                    height="768"
+                    alt="Enciclopedia de Jardines Aurora con categorías de plantas y una ficha de cultivo"
+                    loading="lazy"
+                    (error)="onImageError($event)"
+                  />
+                </div>
+              }
+              @case ('qr-market') {
+                <div class="mock-window mock-qr">
+                  <div class="mock-head">
+                    <strong>QR Market</strong>
+                    <span class="mock-chip">Texto o enlace</span>
+                  </div>
+                  <div class="qr-code">
+                    <svg viewBox="0 0 64 64" fill="currentColor" aria-hidden="true">
+                      <path
+                        fill-rule="evenodd"
+                        d="M0 0h24v24H0zm5 5v14h14V5zM40 0h24v24H40zm5 5v14h14V5zM0 40h24v24H0zm5 5v14h14V45z"
+                      />
+                      <path
+                        d="M9 9h6v6H9zM49 9h6v6h-6zM9 49h6v6H9zM29 0h6v12h-6zM29 18h6v17h-6zM0 29h12v6H0zM18 29h6v6h-6zM40 29h12v6H40zM58 29h6v12h-6zM29 41h6v11h-6zM41 41h11v6H41zM41 53h6v11h-6zM53 53h11v11H53zM29 58h6v6h-6z"
+                      />
+                    </svg>
+                  </div>
+                  <p class="mock-center">Personaliza tu QR con tu logo y colores</p>
+                  <div class="mock-chips">
+                    @for (chip of qrChips; track chip) {
+                      <span>{{ chip }}</span>
+                    }
+                  </div>
+                </div>
+              }
+              @case ('agiup') {
+                <div class="mock-window mock-agiup">
+                  <div class="mock-head">
+                    <span class="mock-brand"
+                      ><span class="mock-logo green">A</span><strong>AgiUp</strong></span
+                    >
+                    <span class="mock-chip">Workspace</span>
+                  </div>
+                  <div class="mock-stats">
+                    @for (stat of agiupStats; track stat.label) {
+                      <div>
+                        <strong>{{ stat.value }}</strong>
+                        <span>{{ stat.label }}</span>
+                      </div>
+                    }
+                  </div>
+                  <div class="mock-board">
+                    @for (column of agiupColumns; track column.title) {
+                      <div class="mock-col">
+                        <p>{{ column.title }}</p>
+                        @if (column.card) {
+                          <div class="mock-card">{{ column.card }}</div>
+                        }
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+              @case ('pair-programming') {
+                <div class="mock-window mock-pair">
+                  <p class="mock-kicker">PairProgramming</p>
+                  <h3>Aprende creando.</h3>
+                  <div class="mock-steps">
+                    @for (step of pairSteps; track step; let i = $index) {
+                      <div>
+                        <span class="mock-num">0{{ i + 1 }}</span>
+                        <span>{{ step }}</span>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+              @case ('templates-market') {
+                <div class="mock-window mock-templates">
+                  <div class="mock-head">
+                    <span class="mock-brand"
+                      ><span class="mock-logo coral">TM</span
+                      ><strong>Templates Market</strong></span
+                    >
+                    <span class="mock-chip">Marketplace</span>
+                  </div>
+                  <div class="mock-swatches">
+                    @for (swatch of templateSwatches; track swatch.label) {
+                      <div class="mock-swatch">
+                        <div class="mock-swatch-preview" [style.background]="swatch.color + '18'">
+                          <span class="mock-swatch-bar" [style.background]="swatch.color"></span>
+                          <span class="mock-line"></span>
+                          <span class="mock-line short"></span>
+                        </div>
+                        <p>{{ swatch.label }}</p>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+              @case ('helpercron-ai') {
+                <div class="mock-window mock-helper">
+                  <div class="mock-head">
+                    <span class="mock-brand"
+                      ><span class="mock-logo blue">H</span><strong>HelperCron AI</strong></span
+                    >
+                    <span class="mock-chip">Ollama local</span>
+                  </div>
+                  <div class="mock-chat">
+                    <div class="mock-chat-side">
+                      <p>NUEVO CHAT</p>
+                      @for (item of helperChatItems; track item; let i = $index) {
+                        <span [class.active]="i === 1">{{ item }}</span>
+                      }
+                    </div>
+                    <div class="mock-chat-main">
+                      <p class="mock-status"><span class="dot"></span>Conversación local</p>
+                      <div class="mock-bubble">
+                        Hola, soy tu asistente de escritorio. Puedo ayudarte a crear flujos,
+                        automatizar tareas y trabajar con tus modelos locales.
+                      </div>
+                      <div class="mock-input">
+                        <span>Escribe un mensaje…</span>
+                        <span class="mock-send">↑</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+          <div class="app-copy">
+            <p class="eyebrow">{{ app.eyebrow }}</p>
+            <h2>{{ app.name }}</h2>
+            <p class="app-description">{{ app.description }}</p>
+            <ul class="app-features">
+              @for (feature of app.features; track feature) {
+                <li><span aria-hidden="true">✓</span>{{ feature }}</li>
+              }
+            </ul>
+            @if (app.note) {
+              <p class="app-note">{{ app.note }}</p>
+            }
+            <div class="app-actions">
+              <a class="app-link" [href]="app.link" target="_blank" rel="noopener noreferrer">
+                {{ app.linkLabel }} <span aria-hidden="true">↗</span
+                ><span class="sr-only"> (nueva pestaña)</span>
+              </a>
+              @if (app.privacy) {
+                <a
+                  class="app-privacy"
+                  [href]="app.privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Política de privacidad<span class="sr-only"> (nueva pestaña)</span></a
+                >
+              }
             </div>
           </div>
         </article>
       }
     </div>
     <p class="caption">
-      Proyectos e imágenes de referencia del diseño. Próximamente, aplicaciones y enlaces
-      disponibles.
+      Aplicaciones personales publicadas por mí. Cada enlace abre el sitio oficial en una nueva
+      pestaña.
     </p>
   </div>
 </section>
@@ -105,22 +221,3 @@
   </div>
 </section>
 <app-contact-banner>¿Tienes una idea?</app-contact-banner>
-<dialog
-  #preview
-  aria-labelledby="app-preview-title"
-  (click)="$event.target === preview && preview.close()"
->
-  <button class="dialog-close" aria-label="Cerrar vista previa" (click)="preview.close()">×</button
-  ><img
-    class="dialog-image"
-    src="/images/app-featured.webp"
-    alt="Vista de referencia de aplicación"
-  />
-  <div class="dialog-content">
-    <h2 id="app-preview-title">Vista previa de la aplicación</h2>
-    <p>
-      Esta ficha reproduce el diseño de referencia. Los datos y el enlace público de la aplicación
-      están pendientes de incorporar.
-    </p>
-  </div>
-</dialog>

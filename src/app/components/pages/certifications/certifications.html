@@ -14,8 +14,8 @@
       <h2 class="smaller">Títulos académicos</h2>
       <p class="eyebrow">Mi formación técnica y profesional.</p>
     </div>
-    <div class="grid two">
-      @for (cert of certificates.slice(0, 2); track cert.name) {
+    <div class="grid three">
+      @for (cert of certificates.slice(0, 3); track cert.name) {
         <article class="certificate-card academic">
           <img
             [src]="cert.image"
@@ -40,13 +40,13 @@
     </div>
     @for (
       group of [
-        { name: 'Udemy', start: 2, end: 4 },
-        { name: 'Platzi', start: 4, end: 6 },
+        { name: 'Udemy', start: 3, end: 5 },
+        { name: 'Platzi', start: 5, end: 8 },
       ];
       track group.name
     ) {
       <h3 class="provider">{{ group.name }}</h3>
-      <div class="grid two">
+      <div class="grid three">
         @for (cert of certificates.slice(group.start, group.end); track cert.name) {
           <article class="certificate-card">
             <img [src]="cert.image" [alt]="'Vista de referencia: ' + cert.name" loading="lazy" />

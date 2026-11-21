@@ -15,28 +15,38 @@ export class Certifications {
     {
       name: 'Técnico en armado de computadores, redes y servidores Linux',
       description: 'Escuela Latinoamericana de Capacitación',
-      image: '/images/certificate-0.webp',
+      image: '/images/certificate-0.jpg',
     },
     {
       name: 'Analista Programador Computacional',
       description: 'IP Chile',
-      image: '/images/certificate-1.webp',
+      image: '/images/certificate-1.jpg',
+    },
+    {
+      name: 'Ingeniería en informática',
+      description: 'Instituto de Ciencias tecnológicas CIISA',
+      image: '/images/certificate-ing.jpg',
     },
     {
       name: 'AWS Lambda con Serverless Framework',
       description: 'Cloud y backend',
-      image: '/images/certificate-2.webp',
+      image: '/images/certificate-2.jpg',
     },
     {
       name: 'Pruebas unitarias con Node y Jest',
       description: 'Pruebas de software',
-      image: '/images/certificate-3.webp',
+      image: '/images/certificate-3.jpg',
     },
-    { name: 'Backend con NestJS', description: 'Backend', image: '/images/certificate-4.webp' },
+    { name: 'Curso básico de Python', description: 'Programación', image: '/images/certificate-4.png' },
     {
-      name: 'Curso básico de Python',
-      description: 'Programación',
-      image: '/images/certificate-5.webp',
+      name: 'Backend con NestJS',
+      description: 'Backend',
+      image: '/images/certificate-5.png',
+    },
+    {
+      name: 'Frontend con ReactJS',
+      description: 'Frontend',
+      image: '/images/certificate-6.jpg',
     },
   ];
   selected = this.certificates[0];
